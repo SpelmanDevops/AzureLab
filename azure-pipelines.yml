@@ -1,0 +1,28 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+  - task AzureCLI@2
+    inputs:
+      azureSubscription: 'Azure Devops SP'
+      scriptType: 'bash'
+- task: AzureCLI@2
+  inputs:
+    azureSubscription: 'Azure Devops SP'
+    scriptType: 'bash'
+    scriptLocation: 'inlineScript'
+    inlineScript: |
+      # Ensure script has execution permissions
+      chmod +x ./scripts/create-azuread-users-groups.sh
+      
+      # Run the Azure CLI script
+      ./scripts/bash/create-azuread-users-groups.sh
+
