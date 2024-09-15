@@ -10,10 +10,6 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-  - task AzureCLI@2
-    inputs:
-      azureSubscription: 'Azure Devops SP'
-      scriptType: 'bash'
 - task: AzureCLI@2
   inputs:
     azureSubscription: 'Azure Devops SP'
@@ -21,7 +17,7 @@ steps:
     scriptLocation: 'inlineScript'
     inlineScript: |
       # Ensure script has execution permissions
-      chmod +x ./scripts/create-azuread-users-groups.sh
+      chmod +x ./scripts/bash/create-azuread-users-groups.sh
       
       # Run the Azure CLI script
       ./scripts/bash/create-azuread-users-groups.sh
