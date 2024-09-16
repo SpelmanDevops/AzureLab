@@ -7,7 +7,9 @@ trigger:
 - main
 
 pool:
-  vmImage: ubuntu-latest
+  name: Default
+  demands:
+    - agent.os -equals Linux  # or Windows based on your VM
 
 steps:
 - task: AzureCLI@2
